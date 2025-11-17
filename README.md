@@ -11,6 +11,11 @@ A production-ready, cloud-native Flask service that rotates uploaded images enti
 
 ## Getting Started
 
+## CMD
+set FLASK_APP=app/wsgi.py
+flask run --host=0.0.0.0 --port=8080
+
+
 ### Prerequisites
 - Python 3.11+
 - Tesseract OCR binaries available on your system
