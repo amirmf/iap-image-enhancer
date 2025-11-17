@@ -1,0 +1,48 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: image-rotator
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: image-rotator
+  template:
+    metadata:
+      labels:
+        app: image-rotator
+    spec:
+      containers:
+        - name: api
+          image: your-docker-registry/iap-image-rotator:latest
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 8080
+          env:
+            - name: ROTATION_LANG
+              value: "fas+eng"
+          readinessProbe:
+            httpGet:
+              path: /healthz
+              port: 8080
+            initialDelaySeconds: 5
+            periodSeconds: 10
+          livenessProbe:
+            httpGet:
+              path: /healthz
+              port: 8080
+            initialDelaySeconds: 10
+            periodSeconds: 20
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: image-rotator
+spec:
+  selector:
+    app: image-rotator
+  ports:
+    - name: http
+      port: 80
+      targetPort: 8080
+  type: ClusterIP
