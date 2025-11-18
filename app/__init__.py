@@ -7,7 +7,7 @@ import os
 from flask import Flask
 
 from .routes import bp as image_blueprint
-
+from . import config 
 
 def create_app() -> Flask:
     """Create and configure the Flask application."""
