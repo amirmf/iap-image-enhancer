@@ -13,7 +13,7 @@ A production-ready, cloud-native Flask service that rotates uploaded images enti
 
 ## CMD
 set FLASK_APP=app/wsgi.py
-flask run --host=0.0.0.0 --port=8080
+.venv/bin/flask run --host=0.0.0.0 --port=8080
 
 
 ### Prerequisites
@@ -25,7 +25,7 @@ flask run --host=0.0.0.0 --port=8080
 python -m venv .venv
 source .venv/bin/activate
 pip install -r requirements.txt
-FLASK_APP=app/wsgi.py flask run --host=0.0.0.0 --port=8080
+FLASK_APP=app/wsgi.py .venv/bin/flask run --host=0.0.0.0 --port=8080
 ```
 
 ### Usage
