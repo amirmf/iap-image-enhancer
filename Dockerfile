@@ -21,6 +21,6 @@ COPY . .
 ENV FLASK_ENV=production \
     ROTATION_LANG=fas+eng
 
-EXPOSE 8080
+EXPOSE 8000
 
 CMD ["gunicorn", "-c", "gunicorn.conf.py", "app.wsgi:app"]
